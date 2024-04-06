@@ -1,12 +1,13 @@
-using SutdentPortal.Web.Data;
 using Microsoft.EntityFrameworkCore;
+using SutdentPortal.Web.Data;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 // Add Service of DB Context
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer());
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("StudentPortal")));
 
 var app = builder.Build();
 
